@@ -24,6 +24,20 @@
 	<link rel="icon" sizes="192x192" href="./images/fdc_192.png">
 	<link rel="apple-touch-icon" sizes="192x192" href="./images/fdc_192.png">
 	<link rel="stylesheet" href="./css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker  
+                   .register('./service-worker.js')
+                   .then(function() { 
+                        console.log('Service Worker Registered'); 
+                    })
+                    .catch(function(err) {
+                        console.error(err);
+                    })
+        } else {
+            console.log("Ahh! Your browser does not supports serviceWorker");
+        }
+    </script>
 	<script type="text/javascript" src="./js/vue.js"></script>
 </head>
 <body>
@@ -55,6 +69,7 @@
 							<li>💯 Multiple entries and multiple columns</li>
 							<li>⏲️ Automatic storage of date and time on new data input</li>
 							<li>🔄 Last entered data suggestion</li>
+							<li>💬 Comments for every data</li>
 							<li>📋 Easy setup with categories and models</li>
 							<li>👀 Review and edition of data</li>
 							<li>✏️ Dynamic edition of categories and models</li>
@@ -114,8 +129,19 @@
 					<div v-for="item in columnItems" class="button category" v-bind:class="{'selected': currentData[nb+2].indexOf(item.name) > -1}" v-on:click="setItem(nb, item)">{{item.name}}</div>
 				</div>
 				<div class="bottom centered">
-					<div class="next button" v-show="nb < currentModel.columns.length - 1" v-on:click="subpage = 'newData_' + (nb+1)">➡️</div>
+					<div class="next button" v-on:click="subpage = 'newData_' + (nb+1)">➡️</div>
 					<div class="previous button" v-show="nb != 0" v-on:click="subpage = 'newData_' + (nb-1)">⬅️</div>
+					<div class="action button" v-on:click="saveData">✔️ Finish</div>
+				</div>
+			</div>
+			<!-- Collect new data comment -->
+			<div class="subpage" v-show="subpage == 'newData_' + currentModel.columns.length">
+				<h1>Comments</h1>
+				<div class="field">
+					<textarea v-model="comments"></textarea>
+				</div>
+				<div class="bottom centered">
+					<div class="previous button" v-on:click="subpage = 'newData_' + (currentModel.columns.length - 1)">⬅️</div>
 					<div class="action button" v-on:click="saveData">✔️ Finish</div>
 				</div>
 			</div>
@@ -130,11 +156,12 @@
 							<th v-for="column in currentModel.columns">
 								{{column.name}} ({{column.category}})
 							</th>
+							<th>Comments</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr v-for="(data, dataidx) in currentCollect.data">
-							<td v-for="(column, colidx) in data" v-on:click="editData(dataidx, colidx)">{{colidx < 2 ? column : column.join(';')}}</td>
+							<td v-for="(column, colidx) in data" v-on:click="editData(dataidx, colidx)">{{colidx < 2 || colidx == data.length -1 ? column : column.join(';')}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -325,6 +352,7 @@
 							<li>💯 Multiple entries and multiple columns</li>
 							<li>⏲️ Automatic storage of date and time on new data input</li>
 							<li>🔄 Last entered data suggestion</li>
+							<li>💬 Comments for every data</li>
 							<li>📋 Easy setup with categories and models</li>
 							<li>👀 Review and edition of data</li>
 							<li>✏️ Dynamic edition of categories and models</li>
