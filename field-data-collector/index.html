@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+<head>
+	<title>Field Data Collector</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="manifest" href="./manifest.json">
+
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="Field Data Collector">
+	<meta name="apple-mobile-web-app-title" content="Field Data Collector">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="msapplication-navbutton-color" content="#ffffff">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="msapplication-starturl" content="./index.html">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="icon" sizes="48x48" href="./images/fdc_48.png">
+	<link rel="apple-touch-icon" sizes="48x48" href="./images/fdc_48.png">
+	<link rel="icon" sizes="96x96" href="./images/fdc_96.png">
+	<link rel="apple-touch-icon" sizes="96x96" href="./images/fdc_96.png">
+	<link rel="icon" sizes="192x192" href="./images/fdc_192.png">
+	<link rel="apple-touch-icon" sizes="192x192" href="./images/fdc_192.png">
+	<link rel="stylesheet" href="./css/style.css" type="text/css" media="all" />
+	<script type="text/javascript" src="./js/vue.js"></script>
+</head>
+<body>
+	<div id="main">
+		<div class="page" v-show="page == 'menu'">
+			<h1>Field Data Collector</h1>
+			<div class="action button fluid" v-show="categories.length > 0 && models.length > 0" v-on:click="page = 'newCollect'">📊 New collect</div>
+			<hr/>
+			<div class="row" v-for="(collect, collectidx) in collects">
+				<div class="floatRight">
+					<div class="icon action button" v-show="!collect.confirmDelete" v-on:click="editCollect(collectidx)">✏️</div>
+					<div class="icon action button" v-show="!collect.confirmDelete" v-on:click="downloadCollect(collect)">📥</div>
+					<div v-show="!collect.confirmDelete" class="icon action button" v-on:click="deleteCollect(collect)">❌</div>
+					<div v-show="collect.confirmDelete">Delete?<br/>
+						<div class="icon action button" v-on:click="deleteCollectConfirm(collectidx)">Yes</div>
+						<div class="icon button" v-on:click="collect.confirmDelete = false">No</div>
+					</div>
+				</div>
+				<div class="button" v-on:click="editCollect(collectidx)">
+					{{collect.name}} ({{collect.model}})
+				</div>
+			</div>
+			<div class="help">
+				<div v-show="categories.length == 0">
+					<h2>Welcome to Field Data Collector!</h2>
+					<p>Field Data Collector is a mobile application to help researchers collect data on the field. It has many features like:
+						<ul>
+							<li>🚀 Fast data input</li>
+							<li>💯 Multiple entries and multiple columns</li>
+							<li>⏲️ Automatic storage of date and time on new data input</li>
+							<li>🔄 Last entered data suggestion</li>
+							<li>📋 Easy setup with categories and models</li>
+							<li>👀 Review and edition of data</li>
+							<li>✏️ Dynamic edition of categories and models</li>
+							<li>📥 Download as CSV</li>
+							<li>📤 Import categories and models from CSV</li>
+							<li>📲 Mobile-first </li>
+							<li>📶 Works offline</li>
+						</ul>
+					</p>
+					<h2>Let's set it up!</h2>
+					<p>To start, you need to create a category. A category is a type of things you will study (e.g. Individuals, Actions...), it contains Items to list every instance of this type of things (e.g. for Individuals: Bob, Alice...).</p>
+					<p>Go to the Categories page and create a category, then add some Items in this category.</p>
+					<p>To avoid any unexpected bug or behaviour, only use common letters and numbers when naming your objects (don't use accented letters, special characters...).</p>
+				</div>
+				<div v-show="categories.length > 0 && models.length == 0">
+					<h2>Great!</h2>
+					<p>Now that you have a category, you need a Data model. A model uses Columns to describe which Categories compose your data. For instance, the data "Alice meets Bob" could be described by the model: "Individual Action Individual" (3 Columns).</p>
+					<p>Go to the Data model page and create a model, then add some Columns to this model using the categories you have.</p>
+				</div>
+				<div v-show="categories.length > 0 && models.length > 0 && collects.length == 0">
+					<h2>Perfect!</h2>
+					<p>Now you can start to collect your data! A collect stores the data based on a model. You are free to select multiple items for the same column, to skip a column if it's not relevant, to go back and edit or finish as soon as you want. Every change is saved!</p>
+					<p>You can also review your whole data and even edit previous data by clicking on the row or cell you want to change. And of course, download the collect.</p>
+					<p><b>All the data is saved in your browser, if you change browser or erase its memory, your data will be lost!</b></p>
+					<p>To make sure that you always open this page with your usual browser, add it to your home screen through your browser's menu!</p>
+					<p>For more advice and help, click anytime on the Information button below.</p>
+				</div>
+			</div>
+			<div class="helper">
+				<div class="button" v-on:click="page = 'info'">ℹ️ Information</div>
+			</div>
+			<div class="bottom">
+				<div class="button" v-on:click="page = 'categories'">📂 Categories</div>
+				<div class="button" v-show="categories.length > 0" v-on:click="page = 'models'">📋 Data models</div>
+			</div>
+		</div>
+
+		<!-- COLLECT -->
+		<div class="page" v-show="page == 'collect'" v-if="currentCollect != null">
+			<!-- Collect page -->
+			<div class="subpage" v-show="subpage == 'menu'">
+				<h1>{{currentCollect.name}} ({{currentCollect.model}})</h1>
+				<div class="action button fluid" v-show="currentModel.columns.length > 0" v-on:click="newData">➕ New data</div>
+				<div class="button fluid" v-on:click="subpage = 'review'">👀 Review data</div>
+				<div class="bottom">
+					<div class="previous button" v-on:click="page = 'menu'">⬅️</div>
+				</div>
+			</div>
+			<!-- Collect new data -->
+			<div class="subpage" v-for="(column, nb) in currentModel.columns" v-show="subpage == 'newData_' + nb">
+				<h1>{{column.name}} ({{column.category}})</h1>
+				<div class="quick choices" v-if="lastUsedItems[nb] != null">
+					<div v-for="item in lastUsedItems[nb]" class="button category" v-bind:class="{'selected': currentData[nb+2].indexOf(item.name) > -1}" v-on:click="setItem(nb, item)">{{item.name}}</div>
+					<hr/>
+				</div>
+				<div class="choices">
+					<div v-for="item in columnItems" class="button category" v-bind:class="{'selected': currentData[nb+2].indexOf(item.name) > -1}" v-on:click="setItem(nb, item)">{{item.name}}</div>
+				</div>
+				<div class="bottom centered">
+					<div class="next button" v-show="nb < currentModel.columns.length - 1" v-on:click="subpage = 'newData_' + (nb+1)">➡️</div>
+					<div class="previous button" v-show="nb != 0" v-on:click="subpage = 'newData_' + (nb-1)">⬅️</div>
+					<div class="action button" v-on:click="saveData">✔️ Finish</div>
+				</div>
+			</div>
+			<!-- Collect review data -->
+			<div class="subpage" v-show="subpage == 'review'">
+				<h1>{{currentCollect.name}} ({{currentCollect.model}})</h1>
+				<table>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Time</th>
+							<th v-for="column in currentModel.columns">
+								{{column.name}} ({{column.category}})
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(data, dataidx) in currentCollect.data">
+							<td v-for="(column, colidx) in data" v-on:click="editData(dataidx, colidx)">{{colidx < 2 ? column : column.join(';')}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="bottom">
+					<div class="previous button" v-on:click="subpage = 'menu'">⬅️</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- NEW COLLECT -->
+		<div class="page" v-show="page == 'newCollect'">
+			<h1>New collect</h1>
+			<div class="input">
+				<label>Collect model:</label>
+				<select v-model="newCollect.model">
+					<option v-for="model in models" v-bind:value="model.name">{{model.name}}</option>
+				</select>
+			</div>
+			<div class="input">
+				<label>Collect name:</label>
+				<input type="text" placeholder="Collect1" v-model="newCollect.name" />
+			</div>
+			<div class="action button fluid" v-show="newCollect.name.trim().length > 0 && newCollect.model != null" v-on:click="startNewCollect">Start new collect</div>
+			<div class="bottom">
+				<div class="previous button" v-on:click="page = 'menu'">⬅️</div>
+			</div>
+		</div>
+
+		<!-- CATEGORIES -->
+		<div class="page" v-show="page == 'categories'">
+			<h1>Categories</h1>
+			<div class="action button fluid" v-on:click="page = 'newCategory'">➕ Add new category</div>
+			<hr/>
+			<div class="row" v-for="(category, catidx) in categories">
+				<div class="floatRight">
+					<div class="icon action button" v-show="!category.confirmDelete" v-on:click="editCategory(catidx)">✏️</div>
+					<div class="icon action button" v-show="!category.confirmDelete" v-on:click="downloadCategory(category)">📥</div>
+					<div v-show="!category.confirmDelete" class="icon action button" v-on:click="deleteCategory(category)">❌</div>
+					<div v-show="category.confirmDelete">Delete?<br/>
+						<div class="icon action button" v-on:click="deleteCategoryConfirm(catidx)">Yes</div>
+						<div class="icon button" v-on:click="category.confirmDelete = false">No</div>
+					</div>
+				</div>
+				<div class="button" v-on:click="editCategory(catidx)">{{category.name}}</div>
+			</div>
+			<div class="bottom">
+				<div class="previous button" v-on:click="page = 'menu'">⬅️</div>
+			</div>
+		</div>
+
+		<!-- CATEGORY -->
+		<div class="page" v-show="page == 'category'" v-if="editingCategory != null">
+			<h1>Category: {{categories[editingCategory].name}}</h1>
+			<div class="input">
+				<label>Category name:</label>
+				<input type="text" placeholder="Category1" v-model="categories[editingCategory].name" />
+			</div>
+			<h3>Items ({{categories[editingCategory].items.length}})</h3>
+			<div class="row" v-for="(item, itemidx) in categories[editingCategory].items">
+				<div v-show="!item.editing">
+					<div class="floatRight">
+						<div class="icon action button" v-on:click="editItem(item)">✏️</div>
+						<div class="icon action button" v-on:click="removeItem(itemidx)">❌</div>
+					</div>
+					<div class="label">
+						{{item.name}}
+					</div>
+				</div>
+				<div class="segment" v-show="item.editing">
+					<div class="input">
+						<label>Item name:</label>
+						<input type="text" v-on:keyup.enter="saveItem(item)" placeholder="Item1" v-model="item.name" />
+					</div>
+					<div class="button fluid" v-on:click="saveItem(item)">💾 Save item</div>
+				</div>
+			</div>
+			<div class="button fluid" v-on:click="addItem">➕ Add new item</div>
+			<div class="bottom">
+				<div class="previous button" v-on:click="page = 'categories'">⬅️</div>
+			</div>
+		</div>
+
+		<!-- NEW CATEGORY -->
+		<div class="page" v-show="page == 'newCategory'">
+			<h1>New category</h1>
+			<div class="input">
+				<label>Category name:</label>
+				<input type="text" placeholder="Category1" v-on:keyup.enter="saveNewCategory" v-model="newCategoryName" />
+			</div>
+			<div class="action button fluid" v-show="newCategoryName.trim().length > 0" v-on:click="saveNewCategory">💾 Save category</div>
+			<div class="action button fluid" v-show="newCategoryName.trim().length > 0" v-on:click="importCategory">📤 Import from CSV file</div>
+			<input class="hidden" id="importCategory" type="file" v-on:change="onImportCategory">
+			<div class="bottom">
+				<div class="previous button" v-on:click="page = 'categories'">⬅️</div>
+			</div>
+		</div>
+
+		<!-- MODELS -->
+		<div class="page" v-show="page == 'models'">
+			<h1>Data models</h1>
+			<div class="action button fluid" v-on:click="page = 'newModel'">➕ Add new model</div>
+			<div class="row" v-for="(model, modelidx) in models">
+				<div class="floatRight">
+					<div class="icon action button" v-show="!model.confirmDelete" v-on:click="editModel(modelidx)">✏️</div>
+					<div class="icon action button" v-show="!model.confirmDelete" v-on:click="downloadModel(model)">📥</div>
+					<div v-show="!model.confirmDelete" class="icon action button" v-on:click="deleteModel(model)">❌</div>
+					<div v-show="model.confirmDelete">Delete?<br/>
+						<div class="icon action button" v-on:click="deleteModelConfirm(modelidx)">Yes</div>
+						<div class="icon button" v-on:click="model.confirmDelete = false">No</div>
+					</div>
+				</div>
+				<div class="button" v-on:click="editModel(modelidx)">{{model.name}}</div>
+			</div>
+			<div class="bottom">
+				<div class="previous button" v-on:click="page = 'menu'">⬅️</div>
+			</div>
+		</div>
+
+		<!-- MODEL -->
+		<div class="page" v-show="page == 'model'" v-if="editingModel != null">
+			<h1>Model: {{models[editingModel].name}}</h1>
+			<div class="input">
+				<label>Model name:</label>
+				<input type="text" placeholder="Model1" v-model="models[editingModel].name" />
+			</div>
+			<h3>Columns ({{models[editingModel].columns.length}})</h3>
+			<div class="row" v-for="(column, colidx) in models[editingModel].columns">
+				<div v-show="!column.editing">
+					<div class="floatRight">
+						<div class="icon action button" v-on:click="editColumn(column)">✏️</div>
+						<div class="icon action button" v-on:click="removeColumn(colidx)">❌</div>
+					</div>
+					<div class="label">
+						{{column.name}} ({{column.category}})
+					</div>
+				</div>
+				<div class="segment" v-show="column.editing">
+					<div class="input">
+						<label>Column name:</label>
+						<input type="text" placeholder="Column1" v-model="column.name" />
+					</div>
+					<h4>Column category:</h4>
+					<div class="categories">
+						<div v-for="category in categories" class="button category" v-bind:class="{'selected': column.category == category.name}"v-on:click="column.category = category.name">
+							{{category.name}}
+						</div>
+					</div>
+					<div class="button fluid" v-on:click="column.editing = false">💾 Save column</div>
+				</div>
+			</div>
+			<div class="button fluid" v-on:click="addColumn">➕ Add column</div>
+			<div class="bottom">
+				<div class="previous button" v-on:click="page = 'models'">⬅️</div>
+			</div>
+		</div>
+
+		<!-- NEW MODEL -->
+		<div class="page" v-show="page == 'newModel'">
+			<h1>New Data model</h1>
+			<div class="input">
+				<label>Model name:</label>
+				<input type="text" placeholder="Data1" v-on:keyup.enter="saveNewModel" v-model="newModelName" />
+			</div>
+			<div class="action button fluid" v-show="newModelName.trim().length > 0" v-on:click="saveNewModel">💾 Save Data model</div>
+			<div class="action button fluid" v-show="newModelName.trim().length > 0" v-on:click="importModel">📤 Import from CSV file</div>
+			<input class="hidden" id="importModel" type="file" v-on:change="onImportModel">
+			<div class="bottom">
+				<div class="previous button" v-on:click="page = 'models'">⬅️</div>
+			</div>
+		</div>
+
+		<div class="page" v-show="page == 'info'">
+			<h1>Information</h1>
+			<div class="help">
+				<div>
+					<h2>General</h2>
+					<p>Field Data Collector is a mobile application to help researchers collect data on the field.</p>
+					<p>To avoid any unexpected bug or behaviour, only use common letters and numbers when naming your objects (don't use accented letters, special characters...).</p>
+					<p>To keep the application fast and reactive, delete the collects that are already finished and downloaded.</p>
+					<p><b>All the data is saved in your browser, if you change browser or erase its memory, your data will be lost!</b></p>
+					<p>To make sure that you always open this page with your usual browser, add it to your home screen through your browser's menu!</p>
+				</div>
+				<div>
+					<h2>Features</h2>
+					<p>
+						<ul>
+							<li>🚀 Fast data input</li>
+							<li>💯 Multiple entries and multiple columns</li>
+							<li>⏲️ Automatic storage of date and time on new data input</li>
+							<li>🔄 Last entered data suggestion</li>
+							<li>📋 Easy setup with categories and models</li>
+							<li>👀 Review and edition of data</li>
+							<li>✏️ Dynamic edition of categories and models</li>
+							<li>📥 Download as CSV</li>
+							<li>📤 Import categories and models from CSV</li>
+							<li>📲 Mobile-first </li>
+							<li>📶 Works offline</li>
+						</ul>
+					</p>
+				</div>
+				<div>
+					<h2>Categories</h2>
+					<p>A category is a type of things you will study (e.g. Individuals, Actions...), it contains Items to list every instance of this type of things (e.g. for Individuals: Bob, Alice...).</p>
+					<p>You can download a category to share or save it. You can also create a category by importing a CSV file (one column, one row for every item in the category).</p>
+				</div>
+				<div>
+					<h2>Data model</h2>
+					<p>A Data model uses Columns to describe which Categories compose your data. For instance, the data "Alice meets Bob" could be described by the model: "Individual Action Individual" (3 Columns).</p>
+					<p>You can download a model to share or save it. You can also create a model by importing a CSV file (two columns: name and category, one row for every column in the model).</p>
+				</div>
+				<div>
+					<h2>Collect</h2>
+					<p>A collect stores the data based on a model. You are free to select multiple items for the same column, to skip a column if it's not relevant, to go back and edit or finish as soon as you want. Every change is saved!</p>
+					<p>You can also review your whole data and even edit previous data by clicking on the row or cell you want to change. And of course, download it.</p>
+				</div>
+				<div>
+					<h2>Bugs, features...</h2>
+					<p>For more information, visit the <a href="https://github.com/WhiteFangs/field-data-collector" target="_blank">Github page</a> of this project. You can contribute, report bugs or ask for features on the Issues page or by mail at loup[at]louphole[dot]com.</p>
+					<p>Apache License 2.0</p>
+					<p>Created by Bilgé Kimyonok. Copyright 2017.</p>
+					<p>Icon by Emoji One, CC BY-SA 4.0</p>
+					<p>Visit <a href="http://www.louphole.com" target="_blank">louphole.com</a> for more (fun, useful, absurd) projects.</p>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="previous button" v-on:click="page = 'menu'">⬅️</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="./js/fieldDataCollector.js"></script>
+</body>
+</html>
