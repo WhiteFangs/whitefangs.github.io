@@ -27,6 +27,10 @@ body{
 	text-align: center;
 }
 
+.absolute.bottom{
+	position: absolute;
+}
+
 .bottom .next{
 	float: right;
 }
@@ -142,9 +146,7 @@ tr:nth-child(2n+1) td {
 	margin-left: 0;
 }
 
-.button.category:focus,
 .button.category:hover,
-.button.category:active,
 .button.category.selected{
 	color: white;
 	background-color: green;

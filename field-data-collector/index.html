@@ -118,11 +118,34 @@
 					<div class="previous button" v-on:click="page = 'menu'">⬅️</div>
 				</div>
 			</div>
+			<!-- Collect edit data date -->
+			<div v-if="currentDataIdx != null" class="subpage" v-show="subpage == 'newData_date'">
+				<h1>Date</h1>
+				<div class="input">
+					<input type="text" placeholder="Date" v-model="currentData[0]"></textarea>
+				</div>
+				<div class="bottom centered">
+					<div class="next button" v-on:click="subpage = 'newData_time'">➡️</div>
+					<div class="action button" v-on:click="saveData">✔️ Finish</div>
+				</div>
+			</div>
+			<!-- Collect edit data time -->
+			<div v-if="currentDataIdx != null" class="subpage" v-show="subpage == 'newData_time'">
+				<h1>Time</h1>
+				<div class="input">
+					<input type="text" placeholder="Time" v-model="currentData[1]"></textarea>
+				</div>
+				<div class="bottom centered">
+					<div class="next button" v-on:click="subpage = 'newData_0'">➡️</div>
+					<div class="previous button" v-on:click="subpage = 'newData_date'">⬅️</div>
+					<div class="action button" v-on:click="saveData">✔️ Finish</div>
+				</div>
+			</div>
 			<!-- Collect new data -->
-			<div class="subpage" v-for="(column, nb) in currentModel.columns" v-show="subpage == 'newData_' + nb">
+			<div v-if="currentDataIdx != null" class="subpage" v-for="(column, nb) in currentModel.columns" v-show="subpage == 'newData_' + nb">
 				<h1>{{column.name}} ({{column.category}})</h1>
-				<div class="quick choices" v-if="lastUsedItems[nb] != null">
-					<div v-for="item in lastUsedItems[nb]" class="button category" v-bind:class="{'selected': currentData[nb+2].indexOf(item.name) > -1}" v-on:click="setItem(nb, item)">{{item.name}}</div>
+				<div class="quick choices" v-if="lastUsedItems[currentCollect.name] != null && lastUsedItems[currentCollect.name][nb] != null">
+					<div v-for="item in lastUsedItems[currentCollect.name][nb]" class="button category" v-bind:class="{'selected': currentData[nb+2].indexOf(item.name) > -1}" v-on:click="setItem(nb, item)">{{item.name}}</div>
 					<hr/>
 				</div>
 				<div class="choices">
@@ -157,15 +180,17 @@
 								{{column.name}} ({{column.category}})
 							</th>
 							<th>Comments</th>
+							<th>Remove</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr v-for="(data, dataidx) in currentCollect.data">
 							<td v-for="(column, colidx) in data" v-on:click="editData(dataidx, colidx)">{{colidx < 2 || colidx == data.length -1 ? column : column.join(';')}}</td>
+							<td v-on:click="deleteData(dataidx)">❌</td>
 						</tr>
 					</tbody>
 				</table>
-				<div class="bottom">
+				<div class="absolute bottom">
 					<div class="previous button" v-on:click="subpage = 'menu'">⬅️</div>
 				</div>
 			</div>
