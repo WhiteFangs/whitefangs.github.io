@@ -143,6 +143,7 @@
 			</div>
 			<!-- Collect new data -->
 			<div v-if="currentDataIdx != null" class="subpage" v-for="(column, nb) in currentModel.columns" v-show="subpage == 'newData_' + nb">
+				<div class="icon action button floatRight" v-if="currentDataIdx == currentCollect.data.length - 1" v-on:click="cancelLastData">❌</div>
 				<h1>{{column.name}} ({{column.category}})</h1>
 				<div class="quick choices" v-if="lastUsedItems[currentCollect.name] != null && lastUsedItems[currentCollect.name][nb] != null">
 					<div v-for="item in lastUsedItems[currentCollect.name][nb]" class="button category" v-bind:class="{'selected': currentData[nb+2].indexOf(item.name) > -1}" v-on:click="setItem(nb, item)">{{item.name}}</div>
@@ -174,19 +175,28 @@
 				<table>
 					<thead>
 						<tr>
+							<th></th>
+							<th></th>
 							<th>Date</th>
 							<th>Time</th>
 							<th v-for="column in currentModel.columns">
 								{{column.name}} ({{column.category}})
 							</th>
 							<th>Comments</th>
-							<th>Remove</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="(data, dataidx) in currentCollect.data">
-							<td v-for="(column, colidx) in data" v-on:click="editData(dataidx, colidx)">{{colidx < 2 || colidx == data.length -1 ? column : column.join(';')}}</td>
-							<td v-on:click="deleteData(dataidx)">❌</td>
+						<tr v-for="(data, dataidx) in reversedData">
+							<td>
+								<span class="icon action button" v-show="deletingDataIdx !== dataidx" v-on:click="deletingDataIdx = dataidx">❌</span>
+								<span v-show="deletingDataIdx === dataidx">
+									Delete? 
+									<span class="icon action button" v-on:click="deleteData(reversedData.length-1-dataidx)">Yes</span>
+									<span class="icon button" v-on:click="deletingDataIdx = null">No</span>
+								</span>
+							</td>
+							<td><span class="icon action button" v-on:click="duplicateData(reversedData.length-1-dataidx)">🔁</span></td>
+							<td v-for="(column, colidx) in data" v-on:click="editData(reversedData.length-1-dataidx, colidx)" v-bind:class="{'date': colidx == 0}">{{colidx < 2 || colidx == data.length -1 ? column : column.join(';')}}</td>
 						</tr>
 					</tbody>
 				</table>

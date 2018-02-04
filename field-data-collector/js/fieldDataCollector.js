@@ -18,6 +18,7 @@ new Vue({
       },
       currentCollectIdx: null,
       currentDataIdx: null,
+      deletingDataIdx: null,
       lastUsedItems: {},
       nbLastUsedItems : 5,
     };
@@ -39,6 +40,9 @@ new Vue({
       if(this.currentCollect == null || this.currentDataIdx == null)
         return null;
       return this.currentCollect.data[this.currentDataIdx];
+    },
+    reversedData: function(){
+      return this.currentCollect != null ? this.currentCollect.data.slice(0).reverse() : [];
     },
     columnItems: function(){
       if(this.currentCollect == null || !this.subpage.startsWith("newData_"))
@@ -80,10 +84,13 @@ new Vue({
     getDate: function(d){
       return this.addZero(d.getDate()) + "-" + this.addZero(d.getMonth() + 1) + "-" + d.getFullYear();
     },
+    getTime: function(d){
+      return this.addZero(d.getHours()) + ":" + this.addZero(d.getMinutes()) + ":" + this.addZero(d.getSeconds());
+    },
     newData: function(){
       var d = new Date();
       var date = this.getDate(d);
-      var time = this.addZero(d.getHours()) + ":" + this.addZero(d.getMinutes()) + ":" + this.addZero(d.getSeconds());
+      var time = this.getTime(d);
       var newData = [date, time];
       var modelLength = this.currentModel.columns.length;
       newData = newData.concat(Array.apply(null, Array(modelLength)).map(Array.prototype.valueOf, []));
@@ -118,8 +125,24 @@ new Vue({
       this.goToHash('collect', this.currentCollectIdx, subpage, idx);
     },
     deleteData: function(idx){
-      this.currentDataIdx = null;
+      this.deletingDataIdx = null;
       this.currentCollect.data.splice(idx, 1);
+      this.saveCollects();
+    },
+    duplicateData: function(idx){
+      var data = this.currentCollect.data[idx];
+      data = JSON.parse(JSON.stringify(data)); // ugly deep copy
+      var d = new Date();
+      var date = this.getDate(d);
+      var time = this.getTime(d);
+      data[0] = date;
+      data[1] = time;
+      this.currentCollect.data.push(data);
+      this.saveCollects();
+    },
+    cancelLastData: function(){
+      this.goToHash('collect', this.currentCollectIdx, 'menu')
+      this.currentCollect.data.splice(-1, 1);
       this.saveCollects();
     },
     setItem: function(nb, item){
@@ -192,7 +215,7 @@ new Vue({
     // storage
     downloadCollect: function(collect){
       var model = this.models.filter(function(m){return m.name == collect.model})[0];
-      var headLine = "Date,Time," + model.columns.map(function(c){return c.name + " (" + c.category + ")";}).join(",") + ",Comments";
+      var headLine = "Date,Time," + model.columns.map(function(c){return c.name.length > 0 ? c.name : c.category;}).join(",") + ",Comments";
       var lineArray = ["data:text/csv;charset=utf-8,\uFEFF" + headLine];
       collect.data.forEach(function (row, index) {
         var line = row.map(function(d, i){ 
@@ -301,6 +324,7 @@ new Vue({
       return JSON.parse(item);
     },
     onHashChange: function(){
+      this.deletingDataIdx = null;
       var hash = location.hash.replace("#", "");
       var parts = hash.split("/");
       if(hash == "menu" || hash == "info" || 
@@ -321,8 +345,13 @@ new Vue({
             this.currentDataIdx = dataIdx;
             this.comments = this.currentData[this.currentData.length - 1];
           }else{
+            this.currentDataIdx = null;
+            this.comments = "";
             this.subpage = "menu";
           }
+        }else{
+          this.currentDataIdx = null;
+          this.comments = "";
         }
       }else if(hash.startsWith("category") && parts.length > 1 && parseInt(parts[1]) < this.categories.length){
         this.page = "category";
@@ -335,12 +364,12 @@ new Vue({
       }
     },
     reInitNavigation: function(){
-        this.page = "menu";
-        this.subpage = "menu";
-        this.currentCollectIdx = null;
-        this.currentDataIdx = null;
-        this.editingCategory= null;
-        this.editingModel = null;
+      this.page = "menu";
+      this.subpage = "menu";
+      this.currentCollectIdx = null;
+      this.currentDataIdx = null;
+      this.editingCategory= null;
+      this.editingModel = null;
     },
     goToHash: function(part1, part2, part3, part4){
       var hash = "";
