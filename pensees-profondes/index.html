@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>Pensées Profondes</title>
+	<link rel="stylesheet" href="./css/style.css" type="text/css" media="all" />
+	<meta name="description" content="" />
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/stories.js"></script>
+	<script type="text/javascript" src="./components/scenario.js"></script>
+	<script type="text/javascript" src="./components/step.js"></script>
+</head>
+<body>
+	<div id="root" class="flex">
+		<transition name="fade">
+			<div v-if="selectedStory == null && ready" id="gameTitle" class="flex">
+				<div class="flex-one"></div>
+				<div class="flex-one">
+					{{gameTitle[language][0]}}<br/>
+					{{gameTitle[language][1]}}
+				</div>
+				<div class="flex-one"></div>
+			</div>
+		</transition>
+		<!-- TODO 
+			- répartition des objets
+		-->
+		<transition name="fade">
+			<div v-if="selectedStory == null && ready" id="menu">
+				<div v-for="(story, storynb) in visibleStories">
+					<div class="story-button">
+						<span class="story-title-container"><span class="story-title" v-on:click="goToHash(storynb)" v-bind:class="{'strike disabled': story.stepIndex == story.steps.length + 1}">{{story.title[language]}}</span></span>
+						<div class="book-title" v-on:click="goToHash(storynb + '/objects')">{{story.bookTitle[language]}}</div>
+					</div>
+					<div v-if="storynb < stories.length - 1" class="separator" v-bind:class="{'complete': story.stepIndex == story.steps.length + 1}" v-bind:style="{height: (24 * story.stepIndex / story.steps.length) + 'px'}"></div>
+				</div>
+			</div>
+		</transition>
+		<transition name="fade">
+			<scenario v-if="selectedStory != null" v-bind:story="stories[selectedStory]" v-bind:language="language" v-bind:objects-view="objectsView" v-on:end="goToHash('')" v-on:go="goToHash"></scenario>
+		</transition>
+	</div>
+
+	<script type="text/x-template" id="scenario-template">
+		<div class="flex-one">
+			<div class="nav-bar">
+				<div class="nav-button">...</div>
+				<span v-if="newObject && !objectsView" class="right-float" v-on:click="delay(function(){$emit('go', '/objects')})">✨<span style="opacity:0">✨</span></span>
+				<div class="flex-one">
+					<span class="icon-button" v-on:click="$emit('end')">🏠</span>
+				</div>
+				<div class="right-align flex-one">
+					<span v-if="!objectsView" class="icon-button" v-on:click="delay(function(){$emit('go', '/objects')})">📖</span>
+					<span v-if="objectsView && !storyCompleted" class="icon-button" v-on:click="delay(function(){$emit('go', '/')})">💭</span>
+				</div>
+			</div>
+			<transition name="fade">
+				<div v-if="ready && showIntro && !objectsView" class="step flex">
+					<div class="step-text flex">
+						<div class="flex-one"></div>
+						<div class="flex-one" v-html="story.stepIndex > 0 ? story.continuing[language] : story.beginning[language]"></div>
+						<div class="flex-one"></div>
+					</div>
+					<div class="button step-action" v-on:click="delay(function(){showIntro = false})">{{story.stepIndex > 0 ? story.continueAction[language] : story.beginningAction[language]}}</div>
+				</div>
+			</transition>
+			<transition name="fade">
+				<step v-if="ready && !showIntro && !objectsView && story.stepIndex < steps.length" v-bind:step="steps[story.stepIndex]" v-bind:intro="currentIntro" v-bind:language="language" v-bind:is-feminine="story.isFeminine" v-on:next="delayNext"></step>
+			</transition>
+			<transition name="fade">
+				<div v-if="ready && objectsView" class="objects flex">
+					<div class="section-title flex flex-one">
+						<div class="flex-one"></div>
+						<div class="flex-one">{{story.bookTitle[language]}}</div>
+					</div>
+					<div class="objects-container">
+						<ul class="object" v-for="object in sortedObjects" v-bind:class="{'locked': object.locked}">
+							<li>
+								<div class="object-name"><span v-if="object.new">✨</span>{{object.name[language]}}<span v-if="object.new">✨</span></div>
+								<div class="object-description">{{regender(object.description[language])}}</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</transition>
+			<transition name="fade">
+				<div v-if="ready && !showIntro && !objectsView && story.stepIndex >= steps.length" class="step flex">
+					<div class="step-text flex">
+						<div class="flex-one"></div>
+						<div class="flex-one">
+							{{currentIntro}}, puis...
+							{{story.ending[language]}}
+						</div>
+						<div class="flex-one"></div>
+					</div>
+					<div class="button step-action" v-for="action in story.endingActions" v-on:click="endingAction(action.value)">{{action[language]}}</div>
+				</div>
+			</transition>
+		</div>
+	</script>
+	<script type="text/x-template" id="step-template">
+		<div class="step flex">
+			<div class="step-text flex" v-on:mousedown="intervalDelay = intervalDelay/4" v-on:mouseup="intervalDelay = intervalDelay*4">
+				<div class="flex-one"></div>
+				<div class="flex-one">
+					{{displayedText}}
+				</div>
+				<div class="flex-one"></div>
+			</div>
+			<div class="button step-action" v-bind:style="{'visibility': displayAction ? 'visible' : 'hidden'}" v-on:click="$emit('next', nextIntro)">{{action}}</div>
+		</div>
+	</script>
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./components/root.js"></script>
+</body>
+</html>
