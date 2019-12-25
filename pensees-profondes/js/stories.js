@@ -52,7 +52,7 @@ var stories = [
 	}
 },
 {
-	"description": {"fr":  "je tombe dans le vide.                                                                                           Je suis encore en train de tomber.                                                                          C'est un vide inquiétant et je sens un vent fort me secouer mais je ne suis pas inquiet."},
+	"description": {"fr":  "je tombe dans le vide.                                                                                           Je suis encore en train de tomber.                                                                          C'est un vide inquiétant et je sens un vent fort me secouer mais j'essaie de me rassurer."},
 	"action": {"fr":  "Continuer à tomber"},
 	"next": {"fr":  "Ma chute ralentit soudainement à partir du moment où j'ai fini par m'ennuyer de celle-ci. Je me remets sur mes pieds et reprends ma route"},
 },

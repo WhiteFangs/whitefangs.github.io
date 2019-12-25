@@ -103,7 +103,7 @@
 	</script>
 	<script type="text/x-template" id="step-template">
 		<div class="step flex">
-			<div class="step-text flex" v-on:mousedown="intervalDelay = intervalDelay/4" v-on:mouseup="intervalDelay = intervalDelay*4">
+			<div class="step-text flex" v-on:mousedown="intervalDelay = intervalDelay/4" v-on:touchstart="intervalDelay = intervalDelay/4" v-on:mouseup="intervalDelay = intervalDelay*4" v-on:touchend="intervalDelay = intervalDelay*4">
 				<div class="flex-one"></div>
 				<div class="flex-one">
 					{{displayedText}}
