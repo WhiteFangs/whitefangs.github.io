@@ -71,7 +71,7 @@ function getStories(){
 		endingActions: [{fr: "Montrer le souvenir au patient et à la justice", value: 2}, {fr: "Déclarer ne rien avoir trouvé et détruire l'enregistrement", value: -2}],
 		endingValue: 0,
 		isFeminine: true,
-	},
+	/*},
 	{
 		steps: theGuilty,
 		title: {fr: "Le Voyant"},
@@ -91,8 +91,9 @@ function getStories(){
 		title: {fr: "La Mère"},
 		objects: [],
 		bookTitle: {fr: "Le Livre du Destin"},
-		stepIndex: 0
+		stepIndex: 0*/
 	}];
+	realStories = shuffle(realStories);
 	stories = shuffle(stories);
 	for (var i = stories.length - 1; i >= 0; i--) {
 		realStories[i%realStories.length].steps.push(stories[i]);
