@@ -3,6 +3,8 @@ body{
 	font-family: Georgia;
 	margin: 0;
 	transition: background-color 2s, color 2s;
+	color: #112233;
+	background: #f7f7f7;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -14,8 +16,8 @@ body{
 }
 
 .dark{
-	background-color: black;
-	color: white;
+	background-color: #112233;
+	color: #f7f7f7;
 }
 
 .flex{
@@ -95,12 +97,12 @@ body{
 .button{
 	text-align: center;
 	padding: .3em;
-	border: 0.1em solid white;
+	border: 0.1em solid #f7f7f7;
 	border-radius: 1em;
 	margin: 0.5em 0;
 	cursor: pointer;
-	background-color: white;
-	color: black;
+	background-color: #f7f7f7;
+	color: #112233;
 }
 
 .nav-bar {
@@ -151,6 +153,19 @@ body{
 	cursor: pointer;
 }
 
+.glow{
+	animation: text-shadow 1s ease-in-out alternate-reverse infinite;
+}
+
+@keyframes text-shadow {
+	0% {  
+		text-shadow: 0 0 1em white, 0 0 1em white, 0 0 1em white;
+	}
+	100%{
+		text-shadow: 0 0 .2em white, 0 0 .2em white, 0 0 .2em white;
+	}
+}
+
 .step, .objects {
 	height: 100%;
 }
@@ -161,7 +176,7 @@ body{
 }
 
 .step-text > .flex-one:first-of-type{
-    min-height: 2em;
+	min-height: 2em;
 }
 
 .section-title {
@@ -186,4 +201,37 @@ body{
 .object.locked div {
 	text-shadow: 0 0 .4em white;
 	color:transparent;
+}
+
+.credits-button{
+	filter: grayscale(100%);
+	position: absolute;
+	bottom: 1em;
+	right: 0;
+}
+
+.credits {
+	position: absolute;
+	top: 25%;
+	background: #f7f7f7;
+	width: 70%;
+	left: 15%;
+	border: #123 solid;
+	border-radius: 1em;
+	padding: 1em;
+}
+
+.credits h2 {
+	margin-top: 0;
+}
+
+.credits .button {
+	border: 0.1em solid #112233;
+	background-color: #112233;
+	color: #f7f7f7;
+}
+
+.close-button{
+	filter: grayscale(100%);
+	float: right;
 }

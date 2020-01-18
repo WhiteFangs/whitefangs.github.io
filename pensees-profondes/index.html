@@ -7,11 +7,43 @@
 	<title>Pensées Profondes</title>
 	<link rel="stylesheet" href="./css/style.css" type="text/css" media="all" />
 	<link rel="manifest" href="./manifest.json">
+
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="Field Data Collector">
+	<meta name="apple-mobile-web-app-title" content="Field Data Collector">
+	<meta name="theme-color" content="#112233">
+	<meta name="msapplication-navbutton-color" content="#112233">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="msapplication-starturl" content="./index.html">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="icon" sizes="48x48" href="./images/icon_48.png">
+	<link rel="apple-touch-icon" sizes="48x48" href="./images/icon_48.png">
+	<link rel="icon" sizes="96x96" href="./images/icon_96.png">
+	<link rel="apple-touch-icon" sizes="96x96" href="./images/icon_96.png">
+	<link rel="icon" sizes="192x192" href="./images/icon_192.png">
+	<link rel="apple-touch-icon" sizes="192x192" href="./images/icon_192.png">
+
 	<meta name="description" content="" />
 	<script type="text/javascript" src="./js/vue.js"></script>
 	<script type="text/javascript" src="./js/stories.js"></script>
 	<script type="text/javascript" src="./components/scenario.js"></script>
 	<script type="text/javascript" src="./components/step.js"></script>
+	<script type="text/javascript">
+		if('serviceWorker' in navigator) {
+			navigator.serviceWorker  
+			.register('./service-worker.js')
+			.then(function() { 
+				console.log('Service Worker Registered'); 
+			})
+			.catch(function(err) {
+				console.error(err);
+			})
+		} else {
+			console.log("Ahh! Your browser does not supports serviceWorker");
+		}
+	</script>
 </head>
 <body>
 	<div id="root" class="flex">
@@ -27,6 +59,7 @@
 		</transition>
 		<!-- TODO 
 			- répartition des objets
+			- autre transitions : point + adjectif / mot de transition / onomathopée,
 		-->
 		<transition name="fade">
 			<div v-if="selectedStory == null && ready" id="menu">
@@ -36,6 +69,17 @@
 						<div class="book-title" v-on:click="goToHash(storynb + '/objects')">{{story.bookTitle[language]}}</div>
 					</div>
 					<div v-if="storynb < stories.length - 1" class="separator" v-bind:class="{'complete': story.stepIndex == story.steps.length + 1}" v-bind:style="{height: (24 * story.stepIndex / story.steps.length) + 'px'}"></div>
+				</div>
+				<div class="icon-button credits-button" v-on:click="credits = true">
+					📜
+				</div>
+				<div class="credits" v-show="credits">
+					<div class="icon-button close-button" v-on:click="credits = false">❌</div>
+					<h2>Crédits</h2>
+					<p><a href="http://louphole.com" target="_blank">Bilgé Kimyonok</a>, 2020</p>
+					<h2>Remerciements</h2>
+					<p>Merci à ma famille, mes amis, en particulier Alice, Cédriane, Clément, David, Dylan, Églantine et Théo, tous les testeurs qui se sont cassés les dents sur la première version alpha, la communauté de <a href="http://www.fiction-interactive.fr/" target="_blank">Fiction-interactive.fr</a> et tous ceux qui m'ont soutenu et continuent à me soutenir.</p>
+					<div class="button step-action" v-on:click="resetLocalStorage">Recommencer</div>
 				</div>
 			</div>
 		</transition>
@@ -48,7 +92,7 @@
 		<div class="flex-one">
 			<div class="nav-bar">
 				<div class="nav-button">...</div>
-				<span v-if="newObject && !objectsView" class="right-float" v-on:click="delay(function(){$emit('go', '/objects')})">✨<span style="opacity:0">✨</span></span>
+				<span v-if="newObject && !objectsView" class="right-float glow" v-on:click="delay(function(){$emit('go', '/objects')})">✨<span style="opacity:0">✨</span></span>
 				<div class="flex-one">
 					<span class="icon-button" v-on:click="$emit('end')">🏠</span>
 				</div>

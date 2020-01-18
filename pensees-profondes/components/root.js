@@ -10,6 +10,7 @@ var root = new Vue({
 			selectedStory: null,
 			ready: false,
 			objectsView: false,
+			credits: false,
 		};
 	},
 	computed:{
@@ -55,6 +56,10 @@ var root = new Vue({
 		saveToLocalStorage: function(key, item){
 			localStorage.setItem(key, JSON.stringify(item));
 		},
+		resetLocalStorage: function(){
+			localStorage.removeItem(STORIES_KEY);
+			window.location.reload();
+		}
 	},
 	mounted: function(){
 		var hash = location.hash;		

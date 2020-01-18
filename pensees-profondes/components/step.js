@@ -20,10 +20,10 @@ Vue.component("step", {
 			return this.step.action[this.language];
 		},
 		nextIntro: function(){
-			return this.step.next[this.language];
+			return this.regender(this.step.next[this.language]);
 		},
 		stepText: function(){
-			return this.intro + ", " + this.regender(this.step.description[this.language]);
+			return (this.intro + ", " + this.regender(this.step.description[this.language])).split(". ").join(".                        ");
 		},
 		wordsMax: function(){
 			return this.stepText.split(this.splitter).length;

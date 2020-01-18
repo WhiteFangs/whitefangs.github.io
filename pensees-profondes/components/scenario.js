@@ -61,9 +61,9 @@ Vue.component("scenario", {
 	},
 	mounted:function(){
 		if(this.story.stepIndex > 0 && !this.storyCompleted)
-			this.currentIntro = this.story.steps[this.story.stepIndex - 1].next[this.language];
+			this.currentIntro = this.regender(this.story.steps[this.story.stepIndex - 1].next[this.language]);
 		else
-			this.currentIntro = this.story.firstIntro[this.language];
+			this.currentIntro = this.regender(this.story.firstIntro[this.language]);
 	},
 	watch: {
 		objectsView: function(toggled){
