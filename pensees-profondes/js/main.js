@@ -64,7 +64,7 @@ function getStories(){
 		isFeminine: false,
 	},
 	{
-		steps: theGuilty,
+		steps: theDoctor,
 		title: {fr: "Le Patient"},
 		objects: [],
 		bookTitle: {fr: "Le Livre de la Justice"},
