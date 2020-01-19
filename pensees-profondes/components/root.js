@@ -11,6 +11,7 @@ var root = new Vue({
 			ready: false,
 			objectsView: false,
 			credits: false,
+			creditsClosedAtEnd: false,
 		};
 	},
 	computed:{
@@ -22,6 +23,12 @@ var root = new Vue({
 					i = this.stories.length;
 			}
 			return visible;
+		},
+		finished: function(){
+			return this.visibleStories.length == 6 && this.stories[5].stepIndex > this.stories[5].steps.length;
+		},
+		displayEndingCredits: function(){
+			return this.finished && !this.stories[5].creditsClosed;
 		}
 	},
 	methods: {
@@ -32,6 +39,10 @@ var root = new Vue({
 			var that = this;
 			if(hash == ""){
 				that.selectedStory = null;
+				if(that.displayEndingCredits){
+					that.credits = true;
+					that.stories[5].creditsClosed = true;
+				}
 				setTimeout(function(){
 					that.ready = true
 					document.body.classList.remove('dark');

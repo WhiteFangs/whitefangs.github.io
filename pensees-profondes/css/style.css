@@ -214,11 +214,11 @@ body{
 	position: absolute;
 	top: 25%;
 	background: #f7f7f7;
-	width: 70%;
-	left: 15%;
+	width: calc(100% - 3.5em);
 	border: #123 solid;
 	border-radius: 1em;
 	padding: 1em;
+	margin: .5em;
 }
 
 .credits h2 {

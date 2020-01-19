@@ -10,8 +10,8 @@
 
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="application-name" content="Field Data Collector">
-	<meta name="apple-mobile-web-app-title" content="Field Data Collector">
+	<meta name="application-name" content="Pensée Profondes">
+	<meta name="apple-mobile-web-app-title" content="Pensée Profondes">
 	<meta name="theme-color" content="#112233">
 	<meta name="msapplication-navbutton-color" content="#112233">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -57,10 +57,6 @@
 				<div class="flex-one"></div>
 			</div>
 		</transition>
-		<!-- TODO 
-			- répartition des objets
-			- autre transitions : point + adjectif / mot de transition / onomathopée,
-		-->
 		<transition name="fade">
 			<div v-if="selectedStory == null && ready" id="menu">
 				<div v-for="(story, storynb) in visibleStories">
@@ -78,8 +74,8 @@
 					<h2>Crédits</h2>
 					<p><a href="http://louphole.com" target="_blank">Bilgé Kimyonok</a>, 2020</p>
 					<h2>Remerciements</h2>
-					<p>Merci à ma famille, mes amis, en particulier Alice, Cédriane, Clément, David, Dylan, Églantine et Théo, tous les testeurs qui se sont cassés les dents sur la première version alpha, la communauté de <a href="http://www.fiction-interactive.fr/" target="_blank">Fiction-interactive.fr</a> et tous ceux qui m'ont soutenu et continuent à me soutenir.</p>
-					<div class="button step-action" v-on:click="resetLocalStorage">Recommencer</div>
+					<p>Merci à ma famille, mes amis, en particulier Alice, Cédriane, Clément, David, Dylan, Églantine et Théo, tous les testeurs qui se sont cassés les dents sur la première version alpha, la communauté de <a href="http://www.fiction-interactive.fr/" target="_blank">Fiction-interactive.fr</a> et tous ceux qui m'ont soutenu et continuent à me soutenir. Et merci à vous d'avoir joué !</p>
+					<div class="button step-action" v-on:click="resetLocalStorage" v-if="finished">Recommencer</div>
 				</div>
 			</div>
 		</transition>
@@ -118,7 +114,8 @@
 				<div v-if="ready && objectsView" class="objects flex">
 					<div class="section-title flex flex-one">
 						<div class="flex-one"></div>
-						<div class="flex-one">{{story.bookTitle[language]}}</div>
+						<div class="flex-one" style="margin-top: 1.5em;">{{story.bookTitle[language]}}</div>
+						<div class="flex-one" style="font-size: .5em; margin-top: .5em;">({{unlockedObjectsCount}}/{{sortedObjects.length}})</div>
 					</div>
 					<div class="objects-container">
 						<ul class="object" v-for="object in sortedObjects" v-bind:class="{'locked': object.locked}">
@@ -135,7 +132,7 @@
 					<div class="step-text flex">
 						<div class="flex-one"></div>
 						<div class="flex-one">
-							{{currentIntro}}, puis...
+							{{currentIntro}}...
 							{{story.ending[language]}}
 						</div>
 						<div class="flex-one"></div>

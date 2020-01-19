@@ -1,5 +1,5 @@
 var log = console.log.bind(console);
-var version = "0.1";
+var version = "0.2";
 var cacheName = "pp-sw";
 var cacheVersion = cacheName + "-" + version;
 var filesToCache = [

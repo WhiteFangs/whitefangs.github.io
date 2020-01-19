@@ -20,6 +20,9 @@ Vue.component("scenario", {
 		sortedObjects: function(){
 			return this.story.objects.sort(function(a, b){return b.locked ? -1 : b.new ? 1 : 0;});
 		},
+		unlockedObjectsCount: function(){
+			return this.story.objects.filter(function(a){return !a.locked;}).length;
+		},
 		storyCompleted: function(){
 			return this.story.stepIndex >= this.story.steps.length;
 		}

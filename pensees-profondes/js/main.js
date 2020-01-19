@@ -20,6 +20,13 @@ function regender(text, isFeminine){
 	}
 }
 
+function getBinding(){
+	var bindings = [", ", ", ", ", ", ", ", ", ", ", ", ", ", ", ", ", ",
+	". Puis, ", ". Puis, ", ". Puis, ", ". Étrangement, ", ". Enfin, ", ". Au bout d'un moment, ", ". Bizarrement, ",
+	". Là, ", ". Et ", ". Et ", ". Ensuite, ", ". Après quelques temps, "]
+	return bindings[Math.floor(Math.random() * (bindings.length))];
+}
+
 function getStories(){
 	var storedStories = localStorage.getItem(STORIES_KEY);
 	if(storedStories != null)
@@ -119,6 +126,7 @@ function getStories(){
 		endingActions: [{fr: "Tout", value: 2}, {fr: "Rien", value: -2}],
 		endingValue: 0,
 		isFeminine: true,
+		creditsClosed: false
 	};
 	realStories = shuffle(realStories);
 	realStories.push(theMotherStory); // always at the end
