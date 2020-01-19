@@ -7,15 +7,15 @@
   "theme_color": "#ffffff",
   "icons": [
     {
-      "src": "./images/icon_48.png",
+      "src": "./images/pp_48.png",
       "sizes": "48x48"
     },
     {
-      "src": "./images/icon_96.png",
+      "src": "./images/pp_96.png",
       "sizes": "96x96"
     },
     {
-      "src": "./images/icon_192.png",
+      "src": "./images/pp_192.png",
       "sizes": "192x192"
     }
   ]

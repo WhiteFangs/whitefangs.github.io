@@ -7,7 +7,7 @@ var stories = [
 {
 	"description": {"fr": "je trouve une petite commode au style démodé, je n'aimerais pas avoir ça chez moi. Le meuble n'est pas très large et il n'y a qu'un seul tiroir."},
 	"action": {"fr":  "Ouvrir le tiroir"},
-	"next": {"fr":  "Dans le tiroir"},
+	"next": {"fr":  "J'ouvre le tiroir. Il y a un passage. Je m'engouffre dedans"},
 },
 {
 	"description": {"fr":  "je découvre un escalier descendant aux marches escarpées."},
