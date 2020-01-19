@@ -61,8 +61,8 @@
 			<div v-if="selectedStory == null && ready" id="menu">
 				<div v-for="(story, storynb) in visibleStories">
 					<div class="story-button">
-						<span class="story-title-container"><span class="story-title" v-on:click="goToHash(storynb)" v-bind:class="{'strike disabled': story.stepIndex == story.steps.length + 1}">{{story.title[language]}}</span></span>
-						<div class="book-title" v-on:click="goToHash(storynb + '/objects')">{{story.bookTitle[language]}}</div>
+						<span class="story-title-container"><span class="story-title" v-on:click="goToHash(storynb)" v-bind:class="{'strike disabled': story.stepIndex == story.steps.length + 1}">{{storynb + 1}}. {{story.title[language]}}</span></span>
+						<div class="book-title" v-on:click="goToHash(storynb + '/objects')" v-show="story.stepIndex > 0">{{story.bookTitle[language]}}</div>
 					</div>
 					<div v-if="storynb < stories.length - 1" class="separator" v-bind:class="{'complete': story.stepIndex == story.steps.length + 1}" v-bind:style="{height: (24 * story.stepIndex / story.steps.length) + 'px'}"></div>
 				</div>

@@ -212,7 +212,7 @@ body{
 
 .credits {
 	position: absolute;
-	top: 25%;
+	top: 0;
 	background: #f7f7f7;
 	width: calc(100% - 3.5em);
 	border: #123 solid;
@@ -223,6 +223,7 @@ body{
 
 .credits h2 {
 	margin-top: 0;
+	font-size: 1em;
 }
 
 .credits .button {

@@ -2,27 +2,22 @@ var stories = [
 {
 	"description":{"fr": "une porte rouge apparaît en face de moi. Elle est en bois avec une peinture qui s'écaille par endroits et elle dégage une aura similaire à l'odeur des pins dans une forêt. C'est plutôt agréable, quoiqu'un peu envahissant."},
 	"action": {"fr": "Ouvrir la porte"},
-	"next": {"fr": "La poignée, usée et poussiéreuse, s'actionne néanmoins. La porte grince puis se referme derrière moi dans un son sourd, comme lointain. Derrière la porte"},
+	"next": {"fr": "La poignée, usée et poussiéreuse, s'actionne néanmoins. La porte grince puis se referme derrière moi dans un son sourd, comme lointain. Je poursuis mon chemin en laissant la porte derrière moi"},
 },
 {
 	"description": {"fr": "je trouve une petite commode au style démodé, je n'aimerais pas avoir ça chez moi. Le meuble n'est pas très large et il n'y a qu'un seul tiroir."},
 	"action": {"fr":  "Ouvrir le tiroir"},
-	"next": {"fr":  "J'ouvre le tiroir. Il y a un passage. Je m'engouffre dedans"},
-},
-{
-	"description": {"fr":  "je découvre un escalier descendant aux marches escarpées."},
-	"action": {"fr":  "Descendre l'escalier"},
-	"next": {"fr":  "Je fais attention en descendant, je manque de tomber à plusieurs reprises mais finalement plus de peur que de mal, j'atteins le fond. En bas de l'escalier"},
+	"next": {"fr":  "J'ouvre le tiroir. Il y a un passage. Il est étroit mais je peux m'y faufiler si je tire encore un peu. Je m'engouffre dedans"},
 },
 {
 	"description": {"fr":  "une grande armoire en bois massif se dresse devant moi. Elle doit faire deux fois ma taille avec de belles ornementations sur les côtés."},
 	"action": {"fr":  "Ouvrir l'armoire"},
-	"next": {"fr":  "Je tire fort pour pouvoir ouvrir les deux battants de la porte, au point que je tombe à la renverse. A l'intérieur de l'armoire"},
+	"next": {"fr":  "Je tire fort pour pouvoir ouvrir les deux battants de la porte, au point que je tombe à la renverse. A l'intérieur de l'armoire il y a tout un monde. Je m'engouffre dedans"},
 },
 {
 	"description": {"fr":  "face à moi, un miroir déformant, dans lequel je me reflète. J'ai une tête énorme et un corps minuscule, et si je bouge de quelques pas sur le côté, c'est l'inverse. Mon reflet semble me faire signe parfois..."},
 	"action": {"fr":  "Entrer dans le miroir"},
-	"next": {"fr":  "Étrangement, j'y passe comme si je traversais une simple porte. De l'autre côté du miroir"},
+	"next": {"fr":  "Étrangement, j'y passe comme si je traversais une simple porte. De l'autre côté du miroir, j'ai le sentiment de n'être plus tout à fait moi-même ni tout à fait un autre. Je continue"},
 	"object": {
 		"name" : {"fr": "Un miroir déformant"},
 		"description": {"fr": "Un grand miroir de plein pied dont le reflet bouge. Plus je le regarde et plus mon reflet change. Si je continue à l'observer je vais finir par douter de mon apparence ou de mes sens."}
@@ -40,12 +35,12 @@ var stories = [
 {
 	"description": {"fr":  "j'aperçois un mur blanc qui s'étend sans fin à droite et à gauche. J'avance le long du mur et je finis par trouver un petit interrupteur blanc, presque camouflé, sur le mur, pile à ma hauteur."},
 	"action": {"fr":  "Déclencher l'interrupteur"},
-	"next": {"fr":  "J'appuie sur l'interrupteur, tout un pan du mur se détache et se met à pivoter. C'est un pan immense qui m'emporte dans sa rotation. De l'autre côté du mur"},
+	"next": {"fr":  "J'appuie sur l'interrupteur, tout un pan du mur se détache et se met à pivoter. C'est un pan immense qui m'emporte dans sa rotation. Je continue de l'autre côté du mur"},
 },
 {
 	"description": {"fr":  "un livre rouge se matérialise à mes pieds. Il n'y a pas de titre, la couverture est simplement rouge, la reliure en cuir, il est léger quand je le ramasse mais plus je le porte, plus il s'allourdit."},
 	"action": {"fr":  "Ouvrir le livre"},
-	"next": {"fr":  "Je l'ouvre et je ne sais pas si c'est le livre qui se gigantifie ou moi qui rapeticie mais je suis irrémédiablement aspiré à l'intérieur même du livre. A l'intérieur"},
+	"next": {"fr":  "Je l'ouvre et je ne sais pas si c'est le livre qui se gigantifie ou moi qui rapeticie mais je suis irrémédiablement aspiré à l'intérieur même du livre. Je ne sais pas trop comment, mais j'avance encore"},
 	"object": {
 		"name" : {"fr": "Un livre rouge"},
 		"description": {"fr": "Un étrange livre rouge, je me suis engouffré(e) dedans d'une certaine manière, et pourtant je l'ai aussi emporté avec moi. Il n'y a peut-être rien de paradoxal là-dedans."}
@@ -60,11 +55,19 @@ var stories = [
 	"description": {"fr":  "je me retrouve nez-à-nez avec une poupée russe à taille humaine. Il y a une poignée, je l'ouvre. Dedans, évidemment, une poupée russe. Je continue, encore une poupée russe. C'est l'idée. Je poursuis inlassablement jusqu'à obtenir une poupée de la taille de ma main."},
 	"action": {"fr":  "Ouvrir la poupée russe"},
 	"next": {"fr":  "Je l'ouvre. Elle tombe de ma main et gise au sol, béante. Puis elle se met à grandir, grandir jusqu'à atteindre les dimensions de la première poupée. Je m'engouffre dedans"},
+	"object": {
+		"name" : {"fr": "Une poupée russe"},
+		"description": {"fr": "Celle-ci a un regard inquiétant. C'est celle que j'ai ouverte la première fois. Puis j'ai continué avec celles cachées dedans, une fois, deux fois, plusieurs fois, jusqu'à tomber dedans. Elles avaient toutes des expressions différentes."}
+	}
 },
 {
 	"description": {"fr":  "je me promène dans un champ d'herbe tondue, un espace lissé parfaitement où la seule aspérité qui vient perturber ce paysage est une petite pierre visible à des kilomètres. Elle est solidement ancrée dans le sol. Il n'y a rien d'autre."},
 	"action": {"fr":  "Trébucher sur la pierre"},
 	"next": {"fr":  "Je n'ai rien de mieux à faire, sinon je suis condamné à cet espace infini terrifiant. Je marche, lève les yeux au ciel et trébuche sur la pierre. Sous cette impulsion, le monde bascule, ou c'est moi, je ne sais pas. Je retrouve enfin l'équilibre"},
+	"object": {
+		"name" : {"fr": "Une pierre"},
+		"description": {"fr": "Je n'ai pas eu d'autre choix que de trébucher dessus pour continuer mon chemin. J'avais l'impression de toucher à un levier du monde sur lequel une simple pression faisait tout basculer."}
+	}
 },
 {
 	"description": {"fr":  "je découvre un tombeau posé sur une structure avec des marches pour y accéder. Il y a des inscriptions égyptiennes ainsi que le dessin d'une personne... On dirait moi ! Quand je m'approche le sarcophage s'ouvre."},
@@ -124,6 +127,10 @@ var stories = [
 	"description": {"fr":  "je regarde mes mains et elles sont pixellisées. De même pour mes pieds. Et face à moi, tout n'est que pixel désormais. Il y a bien des formes qui ressemblent à des paysages ou des objets, mais c'est difficile à reconnaître. Il y a des pixels qui flottent aussi dans l'air."},
 	"action": {"fr":  "Frapper un pixel"},
 	"next": {"fr":  "Je frappe un pixel qui flotte, une onde de choc se répand et je tombe à terre. Quand je me relève, il n'y a plus de pixels. Je cligne des yeux pour être sûr"},
+	"object": {
+		"name" : {"fr": "Un pixel"},
+		"description": {"fr": "Je l'ai récupéré quand je me suis entièrement pixellisé. C'est le dernier qui me reste, il est dans mon champ de vision, à droite. Peut-être qu'il est collé à ma rétine. J'ai beau frotter les yeux, rien n'y fait, il est toujours là."}
+	}
 },
 {
 	"description": {"fr":  "je flotte et je me sens attiré par une force extérieure vers... une planète. Il y en a même plusieurs. Et un soleil ! Je tourne en orbite autour d'une de ces planètes, elle-même autour du soleil."},
@@ -153,6 +160,10 @@ var stories = [
 	"description": {"fr":  "je découvre par terre une bouteille. Elle est en verre transparent et légèrement bleuté. Il y a un liquide à l'intérieur. Ça ressemble à de l'eau mais c'est très mouvementé, il y a des vagues alors que la bouteille est immobile."},
 	"action": {"fr":  "Entrer dans la bouteille"},
 	"next": {"fr":  "Par une force de l'esprit, je rétrécis et pénètre dans la bouteille. Je tombe du goulot et plonge dans l'eau animée. Je coule jusqu'à atteindre le fond. L'eau redescend soudainement et je ne vois plus de parois. Je continue mon chemin"},
+	"object": {
+		"name" : {"fr": "Une bouteille"},
+		"description": {"fr": "C'est la bouteille dans laquelle je me suis engouffré. C'est étrange de retrouver cet objet dans mes souvenirs et dans mon inventaire alors même que je suis dedans d'une certaine manière."}
+	}
 },
 {
 	"description": {"fr":  "je suis en fait sur un toit. Un brume m'empêchait de voir clairement où je mettais les pieds. Il y a deux rebords pentus, j'avance à tâtons. Je fais attention car il y a de la neige aussi. Et une cheminée sans fumée un peu plus loin."},
@@ -170,7 +181,7 @@ var stories = [
 	"next": {"fr":  "A peine monté, j'ai de grandes difficultés à tenir à l'équilibre sur cette embarcation. Dans un mouvement brusque, je perds ma seule rame. Le radeau se fait emporter par les flots et moi avec. Je déploie toute mes forces dans mes bras et jambes pour nager. Je regagne la rive"},
 },
 {
-	"description": {"fr":  "je fais face à un montagne. Enfin peut-être plutôt juste une paroi rocheuse dont je ne vois pas le bout. Elle est humide mais j'ai le sentiment que je peux m'agripper avec un peu d'adresse"},
+	"description": {"fr":  "je fais face à un montagne. Enfin peut-être plutôt juste une paroi rocheuse dont je ne vois pas le bout. Elle est humide mais j'ai le sentiment que je peux m'agripper avec un peu d'adresse."},
 	"action": {"fr":  "Escalader la paroi"},
 	"next": {"fr":  "Je manque de glisser à plusieurs reprises et des gouttes me claquent au visage mais je progresse. Au bout de ce qui semble être plusieurs heures de crispation de mes muscles, je touche enfin un rebord stable. Je me remets sur mes deux pieds"},
 },
@@ -178,6 +189,10 @@ var stories = [
 	"description": {"fr":  "j'avance dans le noir. Je finis par voir quelques reflets çà et là. Je suis dans une grotte. Il y a des stalactites et des stalagmites partout. Les parois sont humides et il fait froid."},
 	"action": {"fr":  "Casser une stalactite"},
 	"next": {"fr":  "Je force un peu pour casser une stalactite. Elle se décroche mais tombe de mes mains et se plante entre mes pieds. Puis elle fond et son eau se répand et submerge très rapidement l'endroit. Je nage tant bien que mal jusqu'à trouver une poche d'air et de terre dans la grotte. Je sors de l'eau"},
+	"object": {
+		"name" : {"fr": "Une stalactite"},
+		"description": {"fr": "J'ai cassé(e) cette stalactite de mes mains mais elle s'est transformée en un flot d'eau qui a remplit la grotte. En y repensant, elle était tiède, c'était déjà suspicieux. Je n'aurais peut-être pas dû y toucher."}
+	}
 },
 {
 	"description": {"fr":  "je m'enfonce. Le sol est maléable et mes pieds s'enfoncent dans une texture étrange proche du sable. Plus je bouge et plus la poigne de cette matière se referme sur mes membres."},
@@ -203,6 +218,10 @@ var stories = [
 	"description": {"fr":  "je me retrouve devant une montagne immense avec une porte colossale. Je pose ma main sur la porte, elle s'ouvre et je m'enfonce dans le coeur de la montagne. En avançant, les parois se peuplent de cristaux qui brillent de plus en plus."},
 	"action": {"fr":  "Toucher un des cristaux"},
 	"next": {"fr":  "Je touche un de ces cristaux aux teintes blanches, dorées et vertes. Ma main prend ses couleurs. Les paillettes se répandent sur moi, sur mes vêtements et ma peau jusqu'au fond de mon être. Je brille de milles feux. Quand la lumière se dissipe, je ne suis plus au même endroit. Je marche"},
+	"object": {
+		"name" : {"fr": "Un morceau de cristal"},
+		"description": {"fr": "J'ai retrouvé ce morceau dans ma poche après m'être transformé en paillettes. C'est assez plaisant de se dire que le coeur d'une montagne cache ce genre de secrets."}
+	}
 },
 {
 	"description": {"fr":  "je suis arrivé au sommet d'une montagne. A l'horizon, tout n'est que monts, neige et nuages. Il devrait faire terriblement froid et le vent devrait m'agresser mais ce n'est pas le cas."},
@@ -243,6 +262,10 @@ var stories = [
 	"description": {"fr":  "je me retrouve dans une pièce close avec une unique fenêtre. Par la fenêtre, un oeil me regarde. Un oeil de la taille de la fenêtre. Il cligne. C'est inquiétant."},
 	"action": {"fr":  "Planter quelque chose dans l'oeil"},
 	"next": {"fr":  "Je trouve une fourche dans un coin de la pièce. Je l'empoigne et embroche l'oeil gigantesque qui m'observait par la fenêtre. Il se referme dans un clignement de douleur et tombe. Le passage à travers la fenêtre est libre. Je passe"},
+	"object": {
+		"name" : {"fr": "Un observateur"},
+		"description": {"fr": "Depuis que j'ai percé cet oeil qui me scrutait par la fenêtre, j'ai l'impression encore plus forte d'être observé(e). Je suis dans une angoisse où je cherche sans cesse où peut se cacher cette inquisition permanente."}
+	}
 },
 {
 	"description": {"fr":  "j'arrive dans une chambre simplement meublée d'un tableau au mur. C'est un portrait style Renaissance. Je cherche une porte ou une fenêtre mais il n'y a rien, juste ce portrait."},
@@ -253,6 +276,20 @@ var stories = [
 	"description": {"fr":  "je débarque au milieu d'une arène de terre battue. Une foule m'acclame depuis des tribunes lointaines. Je me regarde. Je porte un casque et une tunique, j'ai un glaive et un bouclier en main. Un lion s'approche en face de moi."},
 	"action": {"fr":  "Attaquer le lion"},
 	"next": {"fr":  "Je fonce sur le lion sous la clameur de l'arène, tel le gladiateur que je suis supposé être. L'animal court et saute. Nous nous croisons dans les airs. Aucun de nous ne se touche. Je m'écrase au sol. Quand je rouvre les yeux, plus d'arène ni de lion. Je me relève"},
+	"object": {
+		"name" : {"fr": "Un glaive et un bouclier"},
+		"description": {"fr": "J'étais très satisfait(e) de porter ces armes dans l'arène face au lion. Ces deux objets me procuraient un sentiment de courage et d'invincibilité qui me manque autrement."}
+	}
+},
+{
+	"description": {"fr":  "je trouve par terre un chapeau haut de forme. Il est noir et abandonné comme ça au milieu de nulle part. Je pourrais passer mon chemin mais il a l'air tout de même élégant."},
+	"action": {"fr":  "Mettre le chapeau sur sa tête"},
+	"next": {"fr":  "Je porte le chapeau à ma tête. Il me sied pas trop mal. Quelques minutes après l'avoir mis, je le sens s'élargir et s'allonger. Il commence par engloutir ma tête, puis mon buste et enfin mon corps entier. Je suis à l'intérieur du chapeau mais il est si large que je peux marcher dedans. J'avance"},
+},
+{
+	"description": {"fr":  "je découvre une tornade qui se forme au loin. Ce déchaînement de la nature me fascine et terrifie à la fois. C'est proche du sublime."},
+	"action": {"fr":  "Aller dans l'oeil du cyclone"},
+	"next": {"fr":  "Le cyclone se rapproche de moi et moi de lui. Mes pieds restent figés au sol tandis que mes vêtements et mes cheveux sont fouettés et aspirés par le vent. J'atteins le coeur de la tornade. Il y fait un calme surnaturel alors que tout se déchire autour. J'attends, le vent se dissipe peu à peu. Je vois plus clair"},
 },
 ];
 
@@ -279,7 +316,6 @@ cockpit d'une fusée
 blizzard
 tempête de sable
 maelstrom
-oeil de cyclone
 vortex
 porte runique dans une montagne
 couloir de lierre
