@@ -17,7 +17,7 @@ var stories = [
 {
 	"description": {"fr":  "face à moi, un miroir déformant, dans lequel je me reflète. J'ai une tête énorme et un corps minuscule, et si je bouge de quelques pas sur le côté, c'est l'inverse. Mon reflet semble me faire signe parfois..."},
 	"action": {"fr":  "Entrer dans le miroir"},
-	"next": {"fr":  "Étrangement, j'y passe comme si je traversais une simple porte. De l'autre côté du miroir, j'ai le sentiment de n'être plus tout à fait moi-même ni tout à fait un autre. Je continue"},
+	"next": {"fr":  "Étrangement, j'y passe comme si je traversais une simple porte. De l'autre côté du miroir, j'ai le sentiment de n'être plus tout à fait moi-même ni tout à fait un(e) autre. Je continue"},
 	"object": {
 		"name" : {"fr": "Un miroir déformant"},
 		"description": {"fr": "Un grand miroir de plein pied dont le reflet bouge. Plus je le regarde et plus mon reflet change. Si je continue à l'observer je vais finir par douter de mon apparence ou de mes sens."}
@@ -70,17 +70,17 @@ var stories = [
 	}
 },
 {
-	"description": {"fr":  "je découvre un tombeau posé sur une structure avec des marches pour y accéder. Il y a des inscriptions égyptiennes ainsi que le dessin d'une personne... On dirait moi ! Quand je m'approche le sarcophage s'ouvre."},
+	"description": {"fr":  "je découvre un tombeau posé sur une structure avec des marches pour y accéder. Il y a des inscriptions égyptiennes ainsi que le dessin d'une personne... On dirait moi ! Quand je m'approche, le sarcophage s'ouvre."},
 	"action": {"fr":  "S'allonger dans le sarcophage"},
-	"next": {"fr":  "Je m'allonge et la forme de l'objet m'oblige à croiser les bras. Le couvercle se referme automatiquement. Je suis plongé dans le noir mais je sens que j'ai à nouveau une liberté de mouvement. Je me relève"},
+	"next": {"fr":  "Je m'allonge et la forme de l'objet m'oblige à croiser les bras. Le couvercle se referme automatiquement. Je suis plongé(e) dans le noir mais je sens que j'ai à nouveau une liberté de mouvement. Je me relève"},
 },
 {
-	"description": {"fr":  "je me sens lourd, il fait une chaleur écrasante, je suis dans un désert chaud. Au loin, une pyramide. Seule au milieu des dunes de sable. Je lutte contre le poids du soleil et de l'atmosphère pour avancer tant bien que mal et parvenir jusqu'à l'entrée."},
+	"description": {"fr":  "je me sens lourd(e), il fait une chaleur écrasante, je suis dans un désert chaud. Au loin, une pyramide. Seule au milieu des dunes de sable. Je lutte contre le poids du soleil et de l'atmosphère pour avancer tant bien que mal et parvenir jusqu'à l'entrée."},
 	"action": {"fr":  "Entrer dans la pyramide"},
 	"next": {"fr":  "Je pénètre à l'intérieur et c'est comme si tous mes sens venaient d'être remis à zéro. Il fait une température parfaite, et le silence est agréable. J'avance dans le couloir"},
 },
 {
-	"description": {"fr":  "je vois apparaître à travers la brume un château fort. Je dévale la colline sur laquelle je me trouve pour approcher l'entrée. La forteresse est entourée de douves avec un pont-levis redressé. J'ai un cor qui se matérialise dans mes mains."},
+	"description": {"fr":  "je vois apparaître à travers la brume un château fort. Je dévale la colline sur laquelle je me trouve pour m'approcher de l'entrée. La forteresse est entourée de douves avec un pont-levis redressé. J'ai un cor qui se matérialise dans mes mains."},
 	"action": {"fr":  "Sonner le cor"},
 	"next": {"fr":  "Un son fort et ennivrant résonne dans tout le paysage. Soudain, des êtres s'agitent dans le château et le pont-levis se baisse. Je le traverse et entre"},
 	"object": {
@@ -99,9 +99,9 @@ var stories = [
 	"next": {"fr":  "Je me bouche le nez et ferme les yeux, comme si je plongeais dans une piscine, et je saute. Et c'est comme dans une piscine, fluide et chaud. Puis la chaleur disparaît peu à peu. Je me résouds à rouvrir les yeux"},
 },
 {
-	"description": {"fr":  "je suis emporté par le courant d'une rivière. Tout va très vite, je vois les paysages défilés sur la rive et je me débats dans l'eau pour garder ma tête en dehors. Il y a un tronc d'arbre devant, puis une cascade."},
+	"description": {"fr":  "je suis emporté par le courant d'une rivière. Tout va très vite, je vois les paysages défiler sur la rive et je me débats dans l'eau pour garder ma tête en dehors. Il y a un tronc d'arbre devant, puis une cascade."},
 	"action": {"fr":  "S'accrocher au tronc d'arbre"},
-	"next": {"fr":  "J'essaie de me diriger vers le tronc, je les sur le bout des doigts mais ça glisse et je lâche. Je tombe du haut de la cascade, puis dans le vide. Et je me relève"},
+	"next": {"fr":  "J'essaie de me diriger vers le tronc, je l'attrape du bout des doigts mais ça glisse et je lâche. Je tombe du haut de la cascade, puis dans le vide. Et je me relève"},
 },
 {
 	"description": {"fr":  "je trouve un trébuchet en plein milieu de nulle part. Il est en bois évidemment, avec tout un mécanisme complexe que je ne suis pas capable d'expliquer. Je m'installe dans le panier où devrait se placer le boulet, c'est confortable. J'ai même accès au levier pour actionner le trébuchet."},
@@ -133,7 +133,7 @@ var stories = [
 	}
 },
 {
-	"description": {"fr":  "je flotte et je me sens attiré par une force extérieure vers... une planète. Il y en a même plusieurs. Et un soleil ! Je tourne en orbite autour d'une de ces planètes, elle-même autour du soleil."},
+	"description": {"fr":  "je flotte et je me sens attiré(e) par une force extérieure vers... une planète. Il y en a même plusieurs. Et un soleil ! Je tourne en orbite autour d'une de ces planètes, elle-même autour du soleil."},
 	"action": {"fr":  "Changer d'orbite"},
 	"next": {"fr":  "Je m'élance et essaie de nager vaguement vers une autre planète mais elles s'éloignent toutes de plus en plus vite, le soleil aussi, jusqu'à ce qu'elles disparaissent toutes et que je ne flotte plus du tout. Déçu(e), je me relève"},
 },
@@ -148,7 +148,7 @@ var stories = [
 	"next": {"fr":  "Je monte l'escalier en carré. Je continue à monter tout en repassant au même endroit à chaque fois. C'est perturbant. Il y a également un son qui m'accompagne et m'enivre dans la même idée. Toujours ascendant. Tant pis, je saute dans le trou au milieu du carré"},
 	"object": {
 		"name" : {"fr": "Un étrange animal"},
-		"description": {"fr": "Je l'ai entrevue dans la pièce aux escaliers. Il a un corps longiforme avec 6 pattes et un petit bec crochu. Il a l'air d'avoir une carapace et semble pouvoir se rouler en boule pour dévaler des pentes."}
+		"description": {"fr": "Je l'ai entrevu dans la pièce aux escaliers. Il a un corps longiforme avec 6 pattes et un petit bec crochu. Il a l'air d'avoir une carapace et semble pouvoir se rouler en boule pour dévaler des pentes."}
 	}
 },
 {
@@ -166,7 +166,7 @@ var stories = [
 	}
 },
 {
-	"description": {"fr":  "je suis en fait sur un toit. Un brume m'empêchait de voir clairement où je mettais les pieds. Il y a deux rebords pentus, j'avance à tâtons. Je fais attention car il y a de la neige aussi. Et une cheminée sans fumée un peu plus loin."},
+	"description": {"fr":  "je suis en fait sur un toit. Une brume m'empêchait de voir clairement où je mettais les pieds. Il y a deux rebords pentus, j'avance à tâtons. Je fais attention car il y a de la neige aussi. Et une cheminée sans fumée un peu plus loin."},
 	"action": {"fr":  "Sauter dans la cheminée"},
 	"next": {"fr":  "Je saute à pieds joints dans la cheminée. Les parois m'érafflent et la suie se colle à ma peau. Ça pue. Je tombe finalement sur mes fesses. Je me relève avec quelques égratignures. Après m'être dépoussiéré, je reprends ma route"},
 },
@@ -207,7 +207,7 @@ var stories = [
 {
 	"description": {"fr":  "j'arrive devant une étendue désolée et marécageuse. J'essaie de me frayer un chemin parmi les morceaux de terre encore solides mais les marais alentours dégagent une fumée qui trouble ma vision. Je suis maintenant dans un cul de sac."},
 	"action": {"fr":  "Plonger dans le marais"},
-	"next": {"fr":  "Je tombe dans le marais, la tête la première. Il y a des vapeurs étranges dans l'eau. Je ne sais même pas si c'est de l'eau. J'ai l'impression de voir des êtres ou des yeux m'observait. Je perds connaissance. Je me réveille"},
+	"next": {"fr":  "Je tombe dans le marais, la tête la première. Il y a des vapeurs étranges dans l'eau. Je ne sais même pas si c'est de l'eau. J'ai l'impression de voir des êtres ou des yeux m'observer. Je perds connaissance. Je me réveille"},
 },
 {
 	"description": {"fr":  "j'avance lentement car je sens une présence. Je tourne la tête et je fais face à un dragon. Rien de moins. Il est colossal mais heureusement, il dort. Et il dort la bouche ouverte."},
@@ -224,7 +224,7 @@ var stories = [
 	}
 },
 {
-	"description": {"fr":  "je suis arrivé au sommet d'une montagne. A l'horizon, tout n'est que monts, neige et nuages. Il devrait faire terriblement froid et le vent devrait m'agresser mais ce n'est pas le cas."},
+	"description": {"fr":  "j'arrive au sommet d'une montagne. A l'horizon, tout n'est que monts, neige et nuages. Il devrait faire terriblement froid et le vent devrait m'agresser mais ce n'est pas le cas."},
 	"action": {"fr":  "Sauter dans le vide et s'envoler"},
 	"next": {"fr":  "Je n'ai rien de mieux à faire depuis ce sommet donc je saute et j'agite mes bras comme des ailes. Ça fonctionne, je vole. Enfin, je plane plutôt. Je me sens plus libre que jamais. Je traverse un nuage et j'atterris sur un sol. Je me relève"},
 },
@@ -234,7 +234,7 @@ var stories = [
 	"next": {"fr":  "Je pousse le rocher le long du chemin en direction du sommet. Après ce qui me semble être quelques heures, j'arrive au bout. Je m'assoie pour me reposer mais le rocher bouge légèrement et dévale la pente jusqu'en bas. Je reprends mon chemin"},
 },
 {
-	"description": {"fr":  "je suis plongé dans l'obscurité. Il y a des ombres qui oscillent devant moi. Enfin, des ombres blanches que j'aperçois par une lumière surnaturelle qu'elles dégagent. Elles s'orientent dans une direction."},
+	"description": {"fr":  "je suis plongé(e) dans l'obscurité. Il y a des ombres qui oscillent devant moi. Enfin, des ombres blanches que j'aperçois par une lumière surnaturelle qu'elles dégagent. Elles s'orientent dans une direction."},
 	"action": {"fr":  "Suivre les ombres"},
 	"next": {"fr":  "Je suis les ombres lumineuses. J'entends des rires par moments. Certaines me frôlent ou semblent vouloir me toucher. Je n'ai pas peur mais je ne suis pas rassuré(e). Au bout d'un moment, je vois une lumière. Les ombres s'arrêtent avant. Je continue"},
 },
@@ -246,7 +246,7 @@ var stories = [
 {
 	"description": {"fr":  "je vois au loin une bête monstrueuse qui passe. Elle semble avoir une dizaine de pattes de la taille d'immeubles et un visage hybride entre un loup et un kraken. J'ai à peine le temps de l'observer car elle fonce sur moi."},
 	"action": {"fr":  "Fuir"},
-	"next": {"fr":  "Je cours pour ma vie alors que ce monstre mi-loup mi-kraken me poursuit. Je m'essouffle assez vite et elle non. Cependant, elle me dépasse et poursuit sa route. Elle n'en avait pas après moi. Je reprends mon souffle"},
+	"next": {"fr":  "Je cours pour ma vie alors que ce monstre mi-loup mi-kraken me poursuit. Je m'essouffle assez vite et lui non. Cependant, il me dépasse et poursuit sa route. Il n'en avait pas après moi. Je reprends mon souffle"},
 },
 {
 	"description": {"fr":  "je sens qu'un orage se profile. Il y a des nuages noirs qui se forment au-dessus de moi et l'air est lourd. Le vent est tombé. Pas un bruit. Je sens de la tension."},
@@ -270,12 +270,12 @@ var stories = [
 {
 	"description": {"fr":  "j'arrive dans une chambre simplement meublée d'un tableau au mur. C'est un portrait style Renaissance. Je cherche une porte ou une fenêtre mais il n'y a rien, juste ce portrait."},
 	"action": {"fr":  "Regarder le portrait dans les yeux"},
-	"next": {"fr":  "Je regarde droit dans les yeux la figure sur le portrait. Je ne saurais décrire ce visage, il est androgyne et changeant. D'un seul coup, je me sens transporté. Je regarde autour de moi, je vois l'homme du portrait dans la chambre, à ma place. Et je suis dans le tableau. Je décide de m'éloigner du cadre. Je pars sur un chemin du paysage"},
+	"next": {"fr":  "Je regarde droit dans les yeux la figure sur le portrait. Je ne saurais décrire ce visage, il est androgyne et changeant. D'un seul coup, je me sens transporté(e). Je regarde autour de moi, je vois l'homme du portrait dans la chambre, à ma place. Et je suis dans le tableau. Je décide de m'éloigner du cadre. Je pars sur un chemin du paysage"},
 },
 {
 	"description": {"fr":  "je débarque au milieu d'une arène de terre battue. Une foule m'acclame depuis des tribunes lointaines. Je me regarde. Je porte un casque et une tunique, j'ai un glaive et un bouclier en main. Un lion s'approche en face de moi."},
 	"action": {"fr":  "Attaquer le lion"},
-	"next": {"fr":  "Je fonce sur le lion sous la clameur de l'arène, tel le gladiateur que je suis supposé être. L'animal court et saute. Nous nous croisons dans les airs. Aucun de nous ne se touche. Je m'écrase au sol. Quand je rouvre les yeux, plus d'arène ni de lion. Je me relève"},
+	"next": {"fr":  "Je fonce sur le lion sous la clameur de l'arène, tel le gladiateur que je suis supposé(e) être. L'animal court et saute. Nous nous croisons dans les airs. Aucun de nous ne se touche. Je m'écrase au sol. Quand je rouvre les yeux, plus d'arène ni de lion. Je me relève"},
 	"object": {
 		"name" : {"fr": "Un glaive et un bouclier"},
 		"description": {"fr": "J'étais très satisfait(e) de porter ces armes dans l'arène face au lion. Ces deux objets me procuraient un sentiment de courage et d'invincibilité qui me manque autrement."}
@@ -287,7 +287,7 @@ var stories = [
 	"next": {"fr":  "Je porte le chapeau à ma tête. Il me sied pas trop mal. Quelques minutes après l'avoir mis, je le sens s'élargir et s'allonger. Il commence par engloutir ma tête, puis mon buste et enfin mon corps entier. Je suis à l'intérieur du chapeau mais il est si large que je peux marcher dedans. J'avance"},
 },
 {
-	"description": {"fr":  "je découvre une tornade qui se forme au loin. Ce déchaînement de la nature me fascine et terrifie à la fois. C'est proche du sublime."},
+	"description": {"fr":  "je découvre une tornade qui se forme au loin. Ce déchaînement de la nature me fascine et me terrifie à la fois. C'est proche du sublime."},
 	"action": {"fr":  "Aller dans l'oeil du cyclone"},
 	"next": {"fr":  "Le cyclone se rapproche de moi et moi de lui. Mes pieds restent figés au sol tandis que mes vêtements et mes cheveux sont fouettés et aspirés par le vent. J'atteins le coeur de la tornade. Il y fait un calme surnaturel alors que tout se déchire autour. J'attends, le vent se dissipe peu à peu. Je vois plus clair"},
 },
@@ -588,7 +588,7 @@ var theDoctor = [
 
 var theChild = [
 {
-	"description": {"fr":  "je fais face à... moi-même. Mais enfant. Dans le laboratoire de maman. Elle est également là. Je joue avec des câbles tandis qu'elle avance sur ses recherches sur l'esprit. Personne ne me remarque. A part son bureau, il n'y a qu'un brancard au milieu de la pièce. Le tout est éclairé d'une lumière blafarde."},
+	"description": {"fr":  "je fais face à... moi-même. Mais enfant. Dans le laboratoire de maman. Elle est également là. Je joue avec des câbles tandis qu'elle avance ses recherches sur l'esprit. Personne ne me remarque. A part son bureau, il n'y a qu'un brancard au milieu de la pièce. Le tout est éclairé d'une lumière blafarde."},
 	"action": {"fr":  "S'allonger sur le brancard"},
 	"next": {"fr":  "Je m'allonge et ferme les yeux. Les sons de mon moi enfant disparaissent et sont progressivement remplacés par des cris. Paniquée, j'ouvre les yeux"},
 	"object": {
@@ -642,7 +642,7 @@ var theChild = [
 	}
 },
 {
-	"description": {"fr":  "je fais face à un poste d'information. Un présentateur mentionne les actualités et notamment la condamnation d'un homme. On le voit, menotté et tenu par des policiers, sortir d'une entrée de gare abandonnée. Il jette un regard à la caméra mais ce regard et son visage semble percer par-delà l'écran. J'attrape par réflexe la commande physique à ma droite."},
+	"description": {"fr":  "je fais face à un poste d'information. Un présentateur mentionne les actualités et notamment la condamnation d'un homme. On le voit, menotté et tenu par des policiers, sortir d'une entrée de gare abandonnée. Il jette un regard à la caméra mais ce regard et son visage semblent percer par-delà l'écran. J'attrape par réflexe la commande physique à ma droite."},
 	"action": {"fr":  "Appuyer sur n'importe quelle touche"},
 	"next": {"fr":  "J'ai appuyé et son regard scrutateur a disparu de ma vue. Cependant, l'empreinte de ses yeux est encore figée dans mon champ de vision, comme si je m'étais brûlée la rétine à regarder un soleil. Je ferme les yeux et les rouvre"},
 	"object": {
@@ -801,7 +801,7 @@ var theMother = [
 	}
 },
 {
-	"description": {"fr":  "je me retrouve dans un tunnel. Le tunnel. Alors que j'attends un homme, je sens que quelqu'un d'autre est là. C'est une présence innoffensive mais observatrice. Dans le noir. Probablement quelqu'un d'habitué à cette obscurité au point de s'y fondre."},
+	"description": {"fr":  "je me retrouve dans un tunnel. Le tunnel. Alors que j'attends un homme, je sens que quelqu'un d'autre est là. C'est une présence inoffensive mais observatrice. Dans le noir. Probablement quelqu'un d'habitué à cette obscurité au point de s'y fondre."},
 	"action": {"fr":  "Parler à cette présence"},
 	"next": {"fr":  "J'essaie de m'adresser à cet être de l'obscurité mais aucun son ne sort de ma bouche. Le silence se fait oppresssant. Puis un son strident perce les ténèbres, une lumière mécanique fonce sur moi. Je disparais. Je me relève"},
 	"object": {
