@@ -13,6 +13,7 @@ Vue.component("step", {
 			splitter: "",
 			currentInterval: null,
 			intervalDelay: 38,
+			baseIntervalDelay: 38,
 		};
 	},
 	computed:{

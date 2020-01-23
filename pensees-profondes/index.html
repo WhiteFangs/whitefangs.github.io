@@ -124,6 +124,12 @@
 								<div class="object-description">{{regender(object.description[language])}}</div>
 							</li>
 						</ul>
+						<ul class="object" v-for="object in lockedObjects" v-bind:class="{'locked': object.locked}">
+							<li>
+								<div class="object-name"><span v-if="object.new">✨</span>{{object.name[language]}}<span v-if="object.new">✨</span></div>
+								<div class="object-description">{{regender(object.description[language])}}</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</transition>
@@ -144,7 +150,7 @@
 	</script>
 	<script type="text/x-template" id="step-template">
 		<div class="step flex">
-			<div class="step-text flex" v-on:mousedown="intervalDelay = intervalDelay/4" v-on:touchstart="intervalDelay = intervalDelay/4" v-on:mouseup="intervalDelay = intervalDelay*4" v-on:touchend="intervalDelay = intervalDelay*4">
+			<div class="step-text flex" v-on:mousedown="intervalDelay = baseIntervalDelay/4" v-on:touchstart="intervalDelay = baseIntervalDelay/4" v-on:mouseup="intervalDelay = baseIntervalDelay" v-on:touchend="intervalDelay = baseIntervalDelay">
 				<div class="flex-one"></div>
 				<div class="flex-one">
 					{{displayedText}}
